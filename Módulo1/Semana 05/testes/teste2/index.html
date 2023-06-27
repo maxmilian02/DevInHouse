@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Doom</title>
+  <style>
+    #game {
+      width: 600px;
+      height: 400px;
+      background-color: black;
+      position: relative;
+    }
+    #player {
+      width: 20px;
+      height: 20px;
+      background-color: green;
+      position: absolute;
+      top: 190px;
+      left: 290px;
+    }
+  </style>
+</head>
+<body>
+  <div id="game">
+    <div id="player"></div>
+  </div>
+
+  <script>
+    // Variáveis do jogo
+    var game = document.getElementById('game');
+    var player = document.getElementById('player');
+    var playerX = 290;
+    var playerY = 190;
+
+    // Função para atualizar a posição do jogador
+    function updatePlayerPosition() {
+      player.style.left = playerX + 'px';
+      player.style.top = playerY + 'px';
+    }
+
+    // Função para lidar com as teclas pressionadas
+    function handleKeyPress(event) {
+      var key = event.keyCode || event.which;
+
+      if (key === 37) { // seta esquerda
+        playerX -= 10;
+      } else if (key === 39) { // seta direita
+        playerX += 10;
+      } else if (key === 38) { // seta cima
+        playerY -= 10;
+      } else if (key === 40) { // seta baixo
+        playerY += 10;
+      }
+
+      updatePlayerPosition();
+    }
+
+    // Adicionar evento para lidar com as teclas pressionadas
+    document.addEventListener('keydown', handleKeyPress);
+  </script>
+</body>
+</html>
