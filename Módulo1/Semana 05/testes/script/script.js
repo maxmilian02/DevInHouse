@@ -52,14 +52,23 @@ setInterval(function() {
 
 // Função para comprar um upgrade
 function buyUpgrade(upgradeId, upgradeCost, upgradeValue) {
-  if (score >= upgradeCost) {
-    score -= upgradeCost;
-    scorePerClick += upgradeValue;
-    upgradeCounts[upgradeId] = (upgradeCounts[upgradeId] || 0) + 1;
-    updateScore();
-    updateUpgradeCount();
+    if (score >= upgradeCost) {
+      score -= upgradeCost;
+      scorePerClick += upgradeValue;
+      upgradeCounts[upgradeId] = (upgradeCounts[upgradeId] || 0) + 1;
+      updateScore();
+      updateUpgradeCount();
+  
+      if (upgradeId === 'upgrade3' && !autoClickerActive) {
+        autoClickerActive = true;
+        autoClickerInterval = setInterval(function() {
+          score += scorePerClick;
+          updateScore();
+        }, 1000);
+      }
+    }
   }
-}
+  
 
 // Botões de upgrade
 for (const upgrade of upgrades) {
