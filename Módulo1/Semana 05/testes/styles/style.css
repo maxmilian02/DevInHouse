@@ -1,24 +1,27 @@
 body {
     text-align: center;
     background-color: #333;
+    color: #FFF;
+    font-family: Arial, sans-serif;
   }
   
   h1 {
-    color: #FFF;
+    margin-top: 50px;
+    font-size: 36px;
   }
   
   #cookieContainer {
     position: relative;
     display: inline-block;
-    margin: 50px;
+    margin-top: 50px;
   }
   
   .cookie {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     background-image: url(../images/cookie.png);
     background-size: cover;
     transform: translate(-50%, -50%);
@@ -30,6 +33,20 @@ body {
     transform: translate(-50%, -50%) scale(0.9);
   }
   
+  #infoContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+  }
+  
+  #score, #scorePerSecond {
+    font-size: 24px;
+  }
+  
+  #upgrades {
+    margin-top: 50px;
+  }
+  
   button {
     padding: 20px 40px;
     font-size: 20px;
@@ -39,6 +56,7 @@ body {
     border-radius: 10px;
     cursor: pointer;
     margin: 10px;
+    transition: background-color 0.2s ease;
   }
   
   button:hover {
@@ -64,7 +82,8 @@ body {
   }
   
   .upgrade-description {
-    display: none;
+    opacity: 0;
+    visibility: hidden;
     position: absolute;
     top: 100%;
     left: 50%;
@@ -75,25 +94,11 @@ body {
     border-radius: 5px;
     font-size: 14px;
     line-height: 1.4;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
   }
   
   .upgrade:hover .upgrade-description {
-    display: block;
-  }
-  
-  #score {
-    font-size: 24px;
-    color: #FFF;
-    margin-top: 20px;
-  }
-  
-  #scorePerSecond {
-    font-size: 18px;
-    color: #FFF;
-    margin-top: 10px;
-  }
-  
-  #upgrades {
-    margin-top: 50px;
+    opacity: 1;
+    visibility: visible;
   }
   
