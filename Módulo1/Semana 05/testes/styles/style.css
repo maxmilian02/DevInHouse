@@ -1,0 +1,99 @@
+body {
+    text-align: center;
+    background-color: #333;
+  }
+  
+  h1 {
+    color: #FFF;
+  }
+  
+  #cookieContainer {
+    position: relative;
+    display: inline-block;
+    margin: 50px;
+  }
+  
+  .cookie {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background-image: url(../images/cookie.png);
+    background-size: cover;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .cookie.clicked {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  
+  button {
+    padding: 20px 40px;
+    font-size: 20px;
+    background-color: #FFC107;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  button:hover {
+    background-color: #FFCA28;
+  }
+  
+  button.upgrade {
+    position: relative;
+  }
+  
+  .upgrade-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    background-color: #FFF;
+    color: #333;
+    border-radius: 50%;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+  }
+  
+  .upgrade-description {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px;
+    background-color: #FFF;
+    color: #333;
+    border-radius: 5px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .upgrade:hover .upgrade-description {
+    display: block;
+  }
+  
+  #score {
+    font-size: 24px;
+    color: #FFF;
+    margin-top: 20px;
+  }
+  
+  #scorePerSecond {
+    font-size: 18px;
+    color: #FFF;
+    margin-top: 10px;
+  }
+  
+  #upgrades {
+    margin-top: 50px;
+  }
+  
