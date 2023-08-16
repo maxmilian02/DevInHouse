@@ -1,25 +1,25 @@
+import { verificarConflitos, conflitoDatas, deletarReserva } from './funcoes.js';
 
 const numeroQuartoSelect = document.getElementById('numero-quarto');
-let reservas = []; // Definir a variável de reservas no escopo global
+const tabelaBody = document.getElementById('tabela');
+const reservaForm = document.getElementById('reserva-form');
+const logoutButton = document.getElementById('logout');
+let reservas = [];
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const tabelaBody = document.getElementById('tabela');
-    await carregarReservas(tabelaBody);
+    await carregarReservas();
     carregarOpcoesQuartos();
-
-    const reservaForm = document.getElementById('reserva-form');
+    
     reservaForm.addEventListener('submit', handleReservaSubmit);
-
-    const logoutButton = document.getElementById('logout');
     logoutButton.addEventListener('click', handleLogout);
 });
 
-async function carregarReservas(tabelaBody) {
+async function carregarReservas() {
     try {
         const response = await axios.get('http://localhost:3000/reservas');
         const reservasAPI = response.data;
 
-        reservas = [...reservasAPI]; // Atualiza a variável global de reservas
+        reservas = [...reservasAPI];
 
         reservas.forEach((reserva, index) => {
             const tr = criarLinhaReserva(reserva, index);
@@ -27,6 +27,15 @@ async function carregarReservas(tabelaBody) {
         });
     } catch (error) {
         console.error('Erro ao carregar reservas:', error);
+    }
+}
+
+function carregarOpcoesQuartos() {
+    for (let numeroQuarto = 1001; numeroQuarto <= 1010; numeroQuarto++) {
+        const option = document.createElement('option');
+        option.value = numeroQuarto;
+        option.textContent = numeroQuarto;
+        numeroQuartoSelect.appendChild(option);
     }
 }
 
@@ -54,7 +63,7 @@ function criarLinhaReserva(reserva, index) {
     botaoDeletar.textContent = 'Deletar';
     botaoDeletar.classList.add('botao-deletar');
     botaoDeletar.addEventListener('click', () => {
-        deletarReserva(index);
+        deletarReserva(index, reservas);
     });
     acoes.appendChild(botaoDeletar);
     tr.appendChild(acoes);
@@ -74,7 +83,7 @@ async function handleReservaSubmit(event) {
     if (numeroQuarto === '' || nomeCliente === '' || cpfCliente === '' || dataInicio === '' || dataTermino === '') {
         document.getElementById('reserva-error-message').textContent = 'Todos os campos são obrigatórios';
     } else {
-        if (verificarConflitos(numeroQuarto, dataInicio, dataTermino)) {
+        if (verificarConflitos(numeroQuarto, dataInicio, dataTermino, reservas)) {
             document.getElementById('reserva-error-message').textContent = 'O quarto já está reservado para esse período';
         } else {
             const novaReserva = {
@@ -99,27 +108,6 @@ async function criarReserva(reserva) {
     }
 }
 
-function verificarConflitos(numeroQuarto, dataInicio, dataTermino) {
-    return reservas.some((reserva) => {
-        return reserva.numero_quarto === parseInt(numeroQuarto) &&
-               conflitoDatas(dataInicio, dataTermino, reserva.periodo_estadia);
-    });
-}
-
-function conflitoDatas(dataInicioNova, dataTerminoNova, periodoExistente) {
-    const [dataInicioExistente, dataTerminoExistente] = periodoExistente.split(' - ');
-
-    const dataInicioNovaObj = new Date(dataInicioNova);
-    const dataTerminoNovaObj = new Date(dataTerminoNova);
-    const dataInicioExistenteObj = new Date(dataInicioExistente);
-    const dataTerminoExistenteObj = new Date(dataTerminoExistente);
-
-    const conflitoInicio = (dataInicioNovaObj >= dataInicioExistenteObj && dataInicioNovaObj <= dataTerminoExistenteObj);
-    const conflitoTermino = (dataTerminoNovaObj >= dataInicioExistenteObj && dataTerminoNovaObj <= dataTerminoExistenteObj);
-
-    return conflitoInicio || conflitoTermino;
-}
-
 async function atualizarTabelaReservas() {
     const tabelaBody = document.getElementById('tabela');
     tabelaBody.innerHTML = '';
@@ -135,17 +123,4 @@ function resetForm() {
 
 function handleLogout() {
     window.location.href = 'index.html';
-}
-
-function deletarReserva(index) {
-    const reserva = reservas[index];
-    
-    axios.delete(`http://localhost:3000/reservas/${reserva.id}`)
-        .then(() => {
-            reservas.splice(index, 1);
-            atualizarTabelaReservas();
-        })
-        .catch(error => {
-            console.error('Erro ao deletar reserva:', error);
-        });
 }
