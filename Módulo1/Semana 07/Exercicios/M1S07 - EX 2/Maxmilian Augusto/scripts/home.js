@@ -30,15 +30,6 @@ async function carregarReservas(tabelaBody) {
     }
 }
 
-function carregarOpcoesQuartos() {
-    for (let numeroQuarto = 1001; numeroQuarto <= 1010; numeroQuarto++) {
-        const option = document.createElement('option');
-        option.value = numeroQuarto;
-        option.textContent = numeroQuarto;
-        numeroQuartoSelect.appendChild(option);
-    }
-}
-
 function criarLinhaReserva(reserva, index) {
     const tr = document.createElement('tr');
 
