@@ -1,0 +1,137 @@
+/* Estilos Gerais */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding-top: 40px; /* Adicione margem no topo */
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 24px; /* Adicione margem na parte inferior */
+}
+
+#main_h1 {
+  padding-top: 300px;
+}
+
+/* Estilos para a tela de login */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+input[type='email'],
+input[type='password'] {
+  padding: 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  font-size: 16px;
+  color: #333;
+}
+
+button {
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+/* Estilos para a tela de listagem de reservas */
+.tabela-reservas {
+  width: 80%;
+  max-width: 800px;
+  margin-bottom: 24px;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.tabela-reservas th,
+.tabela-reservas td {
+  padding: 12px;
+  text-align: left;
+}
+
+.tabela-reservas th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.tabela-reservas td {
+  background-color: #ffffff;
+}
+
+.botao-deletar {
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.botao-deletar:hover {
+  background-color: #c0392b;
+}
+
+.botao-home {
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.botao-home:hover {
+  background-color: #45a049;
+}
+

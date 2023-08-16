@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Listagem de Reservas</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./scripts/home.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main_h1">Gerenciamento de Reservas</h1>
+        
+        <form class="formulario" id="reserva-form">
+            <h2>Reservar Quarto</h2>
+            <div class="input-wrapper">
+                <label for="numero-quarto">Número do Quarto</label>
+                <select id="numero-quarto" required>
+                    <option value="" disabled selected>Selecione um número</option>
+                    <option value="1000">1000</option>
+                    <option value="1001">1001</option>
+                    <option value="1002">1002</option>
+                    <option value="1003">1003</option>
+                    <option value="1004">1004</option>
+                    <option value="1005">1005</option>
+                    <option value="1006">1006</option>
+                    <option value="1007">1007</option>
+                    <option value="1008">1008</option>
+                    <option value="1009">1009</option>
+                    <option value="1010">1010</option>
+                </select>
+            </div>
+            <div class="input-wrapper">
+                <label for="nome-cliente">Nome Completo</label>
+                <input type="text" id="nome-cliente" placeholder="Digite o nome completo" required>
+            </div>
+            <div class="input-wrapper">
+                <label for="cpf-cliente">CPF</label>
+                <input type="text" id="cpf-cliente" placeholder="Digite o CPF" required>
+            </div>
+            <div class="input-wrapper">
+                <label for="data-inicio">Data de Início</label>
+                <input type="date" id="data-inicio" required>
+            </div>
+            <div class="input-wrapper">
+                <label for="data-termino">Data de Término</label>
+                <input type="date" id="data-termino" required>
+            </div>
+            <button type="submit">Reservar</button>
+            <div id="reserva-error-message"></div>
+        </form>
+        <table class="tabela-reservas">
+            <thead>
+                <tr>
+                    <th>Número do Quarto</th>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Período de Estadia</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabela"></tbody>
+        </table>
+        <button id="logout" class="botao-home" type="submit">Logout</button>
+    </div>
+</body>
+</html>
